@@ -112,11 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.appendChild(mask);
     });
 
-    // 3. Hero Background Paint Effect (Removed)
-    const canvas = document.getElementById('liquid-canvas');
-    if (canvas) {
-        canvas.style.display = 'none'; // Hide the canvas
-    }
+
 
 
     // 5. Video Popup Logic
