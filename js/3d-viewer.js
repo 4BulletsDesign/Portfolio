@@ -1,7 +1,5 @@
-/**
- * 3D Viewer Logic using Three.js for STL files
- * Integrated with 4Bullets portfolio
- */
+
+
 
 let scene, camera, renderer, controls, stlMesh;
 let animationId;
@@ -10,29 +8,35 @@ function init3DViewer(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    // Clear previous renderer if exists
+
+
     container.innerHTML = '';
 
-    // Scene
+
+
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xf4f4f4);
 
-    // Camera
+
+
     camera = new THREE.PerspectiveCamera(45, container.offsetWidth / container.offsetHeight, 0.1, 1000);
     camera.position.set(200, 200, 200);
 
-    // Renderer
+
+
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(container.offsetWidth, container.offsetHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
 
-    // Controls
+
+
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
 
-    // Lighting
+
+
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
@@ -40,11 +44,13 @@ function init3DViewer(containerId) {
     camera.add(pointLight);
     scene.add(camera);
 
-    // Grid helper (optional, removed for cleaner look)
+
+
     // const grid = new THREE.GridHelper(200, 20, 0x000000, 0xcccccc);
     // grid.material.opacity = 0.2;
     // grid.material.transparent = true;
-    // scene.add(grid);
+
+
 
     animate();
 }
@@ -54,7 +60,8 @@ function loadSTL(url, color = 0x666666) {
 
     console.log('Attempting to load STL from:', url);
 
-    // Show loading state
+
+
     const container = document.getElementById('viewer3d-container');
     const loaderEl = document.createElement('div');
     loaderEl.className = 'viewer-loader';
@@ -70,10 +77,12 @@ function loadSTL(url, color = 0x666666) {
         url,
         function (geometry) {
             console.log('STL loaded successfully:', url);
-            // Remove existing mesh
+
+
             if (stlMesh) scene.remove(stlMesh);
 
-            // Material - Sleek industrial look
+
+
             const material = new THREE.MeshPhongMaterial({
                 color: color,
                 specular: 0x222222,
@@ -82,7 +91,8 @@ function loadSTL(url, color = 0x666666) {
 
             stlMesh = new THREE.Mesh(geometry, material);
 
-            // Center the model
+
+
             geometry.computeBoundingBox();
             const center = new THREE.Vector3();
             geometry.boundingBox.getCenter(center);
@@ -90,19 +100,22 @@ function loadSTL(url, color = 0x666666) {
 
             scene.add(stlMesh);
 
-            // Adjust camera to fit model
+
+
             const size = new THREE.Vector3();
             geometry.boundingBox.getSize(size);
             const maxDim = Math.max(size.x, size.y, size.z);
             const fov = camera.fov * (Math.PI / 180);
             let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-            cameraZ *= 2.2; // Adjusted zoom
+
+
             camera.position.set(cameraZ, cameraZ, cameraZ);
             camera.updateProjectionMatrix();
 
             controls.reset();
 
-            // Remove loader
+
+
             if (loaderEl.parentElement) loaderEl.remove();
         },
         function (xhr) {
@@ -119,7 +132,8 @@ function loadSTL(url, color = 0x666666) {
                 progressEl.innerText = 'Error al cargar archivo';
                 progressEl.classList.add('text-danger');
             }
-            // Keep loader visible with error message
+
+
         }
     );
 }
@@ -139,7 +153,8 @@ function onWindowResize() {
     renderer.setSize(container.offsetWidth, container.offsetHeight);
 }
 
-// Event Listeners for MODAL
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const viewerModal = document.getElementById('viewer3dModal');
     const closeBtn = document.getElementById('closeViewer3d');
@@ -147,7 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (viewerModal) {
         window.addEventListener('resize', onWindowResize);
 
-        // Function to open viewer
+
+
         window.open3DViewer = (stlUrl, title, color = 0x666666) => {
             const titleEl = document.getElementById('viewer3dTitle');
             if (titleEl) titleEl.innerText = title;
@@ -181,7 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Attach listeners to "Ver 3D" buttons
+
+
     document.body.addEventListener('click', (e) => {
         const btn = e.target.closest('.view-3d-btn');
         if (btn) {

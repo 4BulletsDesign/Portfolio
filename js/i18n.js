@@ -51,7 +51,8 @@ const translations = {
         "word-diseno": "diseño",
         "word-modelo": "modelo",
 
-        // Photography Page
+
+
         "photo-title": "Fotografía",
         "photo-subtitle": "Capturas que cuentan historias y preservan momentos.",
         "cat-motorsport": "Automovilismo",
@@ -69,7 +70,8 @@ const translations = {
         "proj-teotihuacan": "Teotihuacán",
         "proj-teotihuacan-desc": "La majestuosidad de las pirámides bajo la lente.",
 
-        // 3D Design Page
+
+
         "3d-title": "Diseño 3D",
         "3d-subtitle": "Modelado, visualización y prototipado tridimensional.",
         "cat-3dmod": "Modelado 3D",
@@ -85,7 +87,8 @@ const translations = {
         "proj-llaveros": "Llaveros",
         "proj-llaveros-desc": "Diseños de accesorios y piezas funcionales para impresión.",
 
-        // Graphic Design Page
+
+
         "graphic-title": "Identidades Gráficas",
         "graphic-subtitle": "Construcción de marcas sólidas y lenguajes visuales coherentes.",
         "cat-redesign": "Rediseño",
@@ -97,14 +100,16 @@ const translations = {
         "proj-posts": "Posts",
         "proj-posts-desc": "Creatividades para plataformas digitales y marcas.",
 
-        // Contact Page
+
+
         "contact-title": "HOLA",
         "contact-subtitle": "¿LISTO PARA EMPEZAR? HABLEMOS DE TU PRÓXIMO PROYECTO.",
         "contact-email": "Email",
         "contact-popup-title": "",
         "contact-popup-btn": "contáctame",
 
-        // General
+
+
         "drawer-project": "Proyecto",
         "more-info": "click para más información",
         "hide-info": "ocultar"
@@ -159,7 +164,8 @@ const translations = {
         "word-diseno": "I design",
         "word-modelo": "I model",
 
-        // Photography Page
+
+
         "photo-title": "Photography",
         "photo-subtitle": "Visual narratives that capture and preserve the essence of a moment.",
         "cat-motorsport": "Motorsports",
@@ -177,7 +183,8 @@ const translations = {
         "proj-teotihuacan": "Teotihuacan",
         "proj-teotihuacan-desc": "A fresh perspective on the architectural majesty of the ancient pyramids.",
 
-        // 3D Design Page
+
+
         "3d-title": "3D Design",
         "3d-subtitle": "High-fidelity modeling, product visualization, and digital prototyping.",
         "cat-3dmod": "3D Modeling",
@@ -193,7 +200,8 @@ const translations = {
         "proj-llaveros": "Keychain",
         "proj-llaveros-desc": "Functional additive manufacturing projects and 3D-printable accessories.",
 
-        // Graphic Design Page
+
+
         "graphic-title": "Graphic Identities",
         "graphic-subtitle": "Crafting robust brand identities and cohesive visual systems.",
         "cat-redesign": "Rebranding",
@@ -205,14 +213,16 @@ const translations = {
         "proj-posts": "Digital Content",
         "proj-posts-desc": "Strategic assets and engaging content for digital brand presence.",
 
-        // Contact Page
+
+
         "contact-title": "SAY HELLO",
         "contact-subtitle": "READY TO START? LET'S TALK ABOUT YOUR NEXT PROJECT.",
         "contact-email": "Email",
         "contact-popup-title": "",
         "contact-popup-btn": "contact me",
 
-        // General
+
+
         "drawer-project": "Project",
         "more-info": "click for more information",
         "hide-info": "hide"
@@ -223,7 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const langButtons = document.querySelectorAll('[data-lang-btn]');
     const currentLang = localStorage.getItem('preferredLanguage') || 'es';
 
-    // Set initial language
+
+
     setLanguage(currentLang);
 
     langButtons.forEach(btn => {
@@ -239,14 +250,17 @@ function setLanguage(lang) {
     localStorage.setItem('preferredLanguage', lang);
     document.documentElement.lang = lang;
 
-    // 1. Regular text translations
+
+
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) {
-            // If it's a text-roll or special button, we need to be careful with the inner span logic
+
+
             if (el.classList.contains('text-roll') || el.classList.contains('btn-custom')) {
-                // If the i18n is on a rolling element, update its text and re-trigger letters if necessary
+
+
                 // However, script.js handles rolling on load. 
                 // Better approach: update innerText and let a helper re-init the roll if needed.
                 el.innerText = translations[lang][key];
@@ -257,18 +271,21 @@ function setLanguage(lang) {
         }
     });
 
-    // 2. Special case: Word swap words (if on index)
+
+
     if (typeof window.updateSwapWords === 'function') {
         window.updateSwapWords(lang);
     }
 
-    // 3. Refresh active drawer if open
+
+
     if (typeof window.refreshDrawer === 'function') {
         window.refreshDrawer(lang);
     }
 }
 
-// Helper to re-initialize the letter rolling animation after text change
+
+
 function reinitRoll(el) {
     const text = el.innerText.trim();
     el.innerHTML = '';
