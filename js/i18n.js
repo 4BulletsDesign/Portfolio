@@ -84,6 +84,8 @@ const translations = {
         "proj-macetas-desc": "Estudios de volumetría y diseño industrial para hogar.",
         "proj-llaveros": "Llaveros",
         "proj-llaveros-desc": "Diseños de accesorios y piezas funcionales para impresión.",
+        "proj-infit": "InfinityFit",
+        "proj-infit-desc": "Accesorio estilo tamagotchi interactivo para selección de vestuario.",
 
         // Graphic Design Page
         "graphic-title": "Identidades Gráficas",
@@ -192,6 +194,8 @@ const translations = {
         "proj-macetas-desc": "Industrial design studies focused on home decor and volumetric exploration.",
         "proj-llaveros": "Keychain",
         "proj-llaveros-desc": "Functional additive manufacturing projects and 3D-printable accessories.",
+        "proj-infit": "InfinityFit",
+        "proj-infit-desc": "Interactive tamagotchi-style accessory for real-time outfit selection.",
 
         // Graphic Design Page
         "graphic-title": "Graphic Identities",
